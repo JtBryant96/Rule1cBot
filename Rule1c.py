@@ -58,7 +58,7 @@ def readFileUsers(fileName):
 
 
 def pruneList(list_):
-    """Removes older timestamps from l
+    """Removes older timestamps from list_
 
     :param list_: list in the form [["author", [TimesInUTC]]]
     """
@@ -73,8 +73,8 @@ def pruneList(list_):
                 break
             list_[i][1].pop(0)
         i += 1
-        
-        
+
+
 def fileSyncPosts(list_):
     """Syncs list_ to a file in case of a crash.
 
@@ -102,6 +102,7 @@ def fileSyncUsers(list_):
 
 def authorInList(author, list_):
     """
+
     :param author: author of post
     :param list_: list in the form [["author", [TimesInUTC]]]
     :return: index of author if in list_, else -1
@@ -127,6 +128,7 @@ class Rule1cBotThread (Thread):
         while True:
             for post in bot.subreddit("ddlc").new(limit=25):
                 if post.id not in listOfPosts[1]:
+                    listOfPosts[1].append(post.id)
                     i = authorInList(post.author, listOfUsers[1])
                     if i == -1:
                         if len(listOfUsers[1][i][1]) > postsPer:
