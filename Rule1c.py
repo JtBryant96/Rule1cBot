@@ -58,23 +58,23 @@ def readFileUsers(fileName):
 
 
 def pruneList(list_):
-    """Removes older timestamps from list_
+    """Removes older timestamps from l
 
     :param list_: list in the form [["author", [TimesInUTC]]]
     """
-    removeList = []
-    for user in list_:
+    i = 0
+    while i < len(list_):
         while True:
-            if len(user[1]) == 0:
-                removeList.append(user)
+            if len(list_[i][1]) == 0:
+                list_.pop(i)
+                i -= 1
                 break
-            if user[list_][0] + numHours - 300 < time():  # 5 minute leeway
+            if list_[i][1][0] + numHours - 300 < time():  # 5 minute leeway
                 break
-            user[1].pop(0)
-    for user in removeList:
-        list_.remove(user)
-
-
+            list_[i][1].pop(0)
+        i += 1
+        
+        
 def fileSyncPosts(list_):
     """Syncs list_ to a file in case of a crash.
 
