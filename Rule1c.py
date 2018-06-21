@@ -58,7 +58,7 @@ def readFileUsers(fileName):
 
 
 def pruneList(list_):
-    """Removes older timestamps from l
+    """Removes older timestamps from list_
 
     :param list_: list in the form [["author", [TimesInUTC]]]
     """
@@ -102,7 +102,6 @@ def fileSyncUsers(list_):
 
 def authorInList(author, list_):
     """
-
     :param author: author of post
     :param list_: list in the form [["author", [TimesInUTC]]]
     :return: index of author if in list_, else -1
